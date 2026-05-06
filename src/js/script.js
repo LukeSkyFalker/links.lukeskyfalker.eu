@@ -1,16 +1,11 @@
 (function() {
   'use strict';
 
-  // Safe element selection
   const themeBtn = document.getElementById('themeToggle');
   const shareBtn = document.getElementById('shareBtn');
-  const toast = document.getElementById('toast');
-  const toastMsg = document.getElementById('toastMessage');
 
-  // Mark body as loaded (remove FOUC hide)
   document.body.classList.add('loaded');
 
-  // Mark elements for JS enhancement (progressive enhancement)
   document.querySelectorAll('.link-card, .section-divider').forEach(el => {
     el.classList.add('js-enhanced');
   });
@@ -20,7 +15,6 @@
     el.classList.add('visible');
   };
 
-  // Fallback: show all immediately if observer not supported
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -33,7 +27,6 @@
     
     document.querySelectorAll('.link-card, .section-divider').forEach(el => observer.observe(el));
   } else {
-    // Fallback: show all immediately
     document.querySelectorAll('.link-card, .section-divider').forEach(animateIn);
   }
 
@@ -51,14 +44,12 @@
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
   };
 
-  // Initialize theme
   if (savedTheme) {
     applyTheme(savedTheme === 'light');
   } else if (systemPrefersLight) {
     applyTheme(true);
-  } // else default is dark (already set in HTML)
+  }
 
-  // Theme toggle click handler
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
       const isCurrentlyLight = root.getAttribute('data-theme') === 'light';
@@ -74,7 +65,6 @@
     toast.setAttribute('aria-live', 'assertive');
     toast.classList.add('show');
     
-    // Clear ARIA after animation to avoid repeated announcements
     setTimeout(() => {
       toast.classList.remove('show');
       setTimeout(() => {
@@ -114,9 +104,7 @@
   // ===== RIPPLE EFFECT (using CSS class) =====
   document.querySelectorAll('.link-card').forEach(card => {
     card.addEventListener('click', function(e) {
-      // Skip ripple if it's a real link being activated
       if (this.tagName === 'A' && !e.defaultPrevented) {
-        // Let the link navigate normally, but still show ripple
       }
       
       const rect = this.getBoundingClientRect();
@@ -130,12 +118,9 @@
       
       this.appendChild(ripple);
       
-      // Clean up ripple element after animation
       setTimeout(() => ripple.remove(), 600);
     });
     
-    // ✅ Keyboard accessibility: only if NOT a native <a> with href
-    // Native anchors already work with Enter/Space, so we skip to avoid double-trigger
     if (card.tagName !== 'A' || !card.getAttribute('href')) {
       card.setAttribute('tabindex', '0');
       card.addEventListener('keydown', e => {
@@ -158,7 +143,6 @@
           transport_type: 'beacon'
         });
       }
-      // Add other analytics here (Plausible, Matomo, etc.)
     });
   });
 })();
