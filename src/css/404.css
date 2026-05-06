@@ -1,0 +1,158 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --bg-primary: #0A090F;
+  --text-primary: #3393FF;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --font: 'Inter', system-ui, -apple-system, sans-serif;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --bg-primary: #F8FAFC;
+    --text-primary: #3393FF;
+  }
+}
+body {
+  font-family: var(--font);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 110vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 4;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.error-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.error-code {
+  font-family: var(--font); 
+  font-size: clamp(6rem, 20vw, 14rem); 
+  font-weight: 900;
+  line-height: 1; 
+  background: linear-gradient(135deg, var(--text-primary));
+  -webkit-background-clip: 
+  text; background-clip: text; 
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px; 
+  animation: float 6s ease-in-out infinite; opacity: 0.85;
+}
+
+.error-title {
+  font-family: var(--font); 
+  font-size: clamp(1.6rem, 4vw, 2.4rem); 
+  font-weight: 700;
+  margin-bottom: 15px; 
+  color: var(--text-primary);
+}
+
+.error-desc {
+  font-family: var(--font); 
+  font-weight: 400; 
+  font-size: 1.1rem; 
+  color: var(--text-primary);
+  max-width: 510px; 
+  margin: 0 auto 40px; 
+  line-height: 1.8;
+}
+
+.error-buttons { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 1rem; 
+}
+
+a { 
+    font-family: var(--font); 
+    font-size: 1.2rem; 
+    color: var(--text-primary); 
+    text-decoration: none; 
+}
+
+.floating-icon {
+  position: absolute; 
+  font-size: 2.5rem; 
+  opacity: 0.08; 
+  color: var(--text-primary);
+  animation: float 10s ease-in-out infinite; z-index: 0; pointer-events: none;
+}
+
+.floating-icon:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
+.floating-icon:nth-child(2) { top: 55%; right: 10%; animation-delay: 2s; font-size: 3.5rem; }
+.floating-icon:nth-child(3) { bottom: 15%; left: 15%; animation-delay: 4s; }
+.floating-icon:nth-child(4) { bottom: 25%; right: 20%; animation-delay: 1.5s; font-size: 2rem; }
+
+.footer {
+  font-family: var(--font); 
+  font-size: 1.05rem; 
+  text-align: center;
+  animation: fadeInDown 0.8s ease-out 0.6s both; 
+  color: var(--text-primary);
+  margin-top: 8rem; 
+  padding-bottom: 2rem;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+
+  .error-section {
+    margin-top: 300px;
+    padding: 0 20px;
+  }
+
+  body {
+    line-height: 1.6;
+  }
+
+  .error-desc {
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 90%;
+    text-align: center;
+  }
+
+  .error-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  a {
+    font-size: 1rem;
+  }
+
+  .footer {
+    font-size: 0.9rem;
+    margin-top: 4rem;
+  }
+
+  .floating-icon {
+    font-size: 1.8rem;
+    opacity: 0.05;
+  }
+
+  .error-code {
+    font-size: clamp(4rem, 18vw, 8rem);
+  }
+
+  .error-title {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+}
