@@ -1,3 +1,4 @@
+
 /* ===== CSS VARIABLES (Dark Theme - Default) ===== */
 :root {
   /* DARK DEFAULT */
@@ -155,6 +156,9 @@ body.loaded { visibility: visible; }
 .link-arrow { position: relative; z-index: 1; color: var(--text-secondary); font-size: 0.85rem; transition: var(--transition); flex-shrink: 0; margin-left: 10px; }
 .link-card:hover .link-arrow { color: var(--blue-accent); transform: translateX(4px); }
 
+/* ===== ICON SIZE AND OTHER ===== */
+.ph{font-size: 1.45rem;}
+
 /* ===== RIPPLE EFFECT (CSS-only keyframes) ===== */
 @keyframes ripple { to { transform: scale(2.5); opacity: 0; } }
 .ripple {
@@ -168,12 +172,12 @@ body.loaded { visibility: visible; }
 }
 
 /* ===== FEATURED BADGE & DIVIDERS ===== */
-.link-card.featured { border-color: rgba(51, 147, 255, 0.3); background: linear-gradient(135deg, rgba(51,147,255,0.1), var(--bg-card)); }
+.link-card.featured { border-color: #3393ff4d; background: linear-gradient(135deg, #3393ff1a, var(--bg-card)); }
 .featured-badge { position: absolute; top: -1px; right: 20px; background: var(--gradient-blue); color: #FFF; font-size: 0.65rem; font-weight: 700; padding: 4px 12px; border-radius: 0 0 8px 8px; letter-spacing: 1px; z-index: 2; }
 .section-divider { display: flex; align-items: center; gap: 15px; margin: 5px 0; opacity: 0; transition: opacity 0.5s; }
 .section-divider.js-enhanced { opacity: 1; }
 .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border-color), transparent); }
-.section-divider span { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; white-space: nowrap; }
+.section-divider span { font-size: 1.2rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; font-weight: 300; white-space: nowrap; }
 
 /* ===== FOOTER & TOAST ===== */
 .footer { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--border-color); animation: fadeInDown 0.8s ease-out 0.6s both; }
