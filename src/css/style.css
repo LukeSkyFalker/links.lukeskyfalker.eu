@@ -18,6 +18,7 @@
   --shadow-lg: 0 20px 60px rgba(51, 147, 255, 0.18);
   --radius: 16px;
   --radius-sm: 12px;
+  --transition: all 0.3s ease;
 }
 
 /* LIGHT AUTO (system setting) */
@@ -157,7 +158,7 @@ body.loaded { visibility: visible; }
 .link-card:hover .link-arrow { color: var(--blue-accent); transform: translateX(4px); }
 
 /* ===== ICON SIZE AND OTHER ===== */
-.ph{font-size: 1.45rem;}
+.ph { font-size: 1.20; }
 
 /* ===== RIPPLE EFFECT (CSS-only keyframes) ===== */
 @keyframes ripple { to { transform: scale(2.5); opacity: 0; } }
@@ -172,7 +173,7 @@ body.loaded { visibility: visible; }
 }
 
 /* ===== FEATURED BADGE & DIVIDERS ===== */
-.link-card.featured { border-color: #3393ff4d; background: linear-gradient(135deg, #3393ff1a, var(--bg-card)); }
+.link-card.featured { border-color: rgba(51, 147, 255, 0.30); background: linear-gradient(135deg, rgba(51, 147, 255, 0.10), var(--bg-card)); }
 .featured-badge { position: absolute; top: -1px; right: 20px; background: var(--gradient-blue); color: #FFF; font-size: 0.65rem; font-weight: 700; padding: 4px 12px; border-radius: 0 0 8px 8px; letter-spacing: 1px; z-index: 2; }
 .section-divider { display: flex; align-items: center; gap: 15px; margin: 5px 0; opacity: 0; transition: opacity 0.5s; }
 .section-divider.js-enhanced { opacity: 1; }
@@ -181,8 +182,6 @@ body.loaded { visibility: visible; }
 
 /* ===== FOOTER & TOAST ===== */
 .footer { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid var(--border-color); animation: fadeInDown 0.8s ease-out 0.6s both; }
-.footer-brand { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); font-size: 0.95rem; text-decoration: none; transition: var(--transition); }
-.footer-brand:hover { color: var(--blue-accent); }
 
 /* ===== ACCESSIBILITY & FOCUS ===== */
 a:focus-visible, button:focus-visible { outline: 2px solid var(--blue-accent); outline-offset: 3px; }
