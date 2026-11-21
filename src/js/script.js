@@ -386,113 +386,65 @@
             });
 
         });
-
-
-    // ============================================
-    // CAL.COM EMBED
-    // ============================================
-
+/* ============================================
+CAL.COM EMBED
+============================================ */
     (function (C, A, L) {
-
         const pushToQueue = function (api, args) {
             api.q.push(args);
         };
-
         const documentRef = C.document;
+        C.Cal = C.Cal || function () {
+            const cal = C.Cal;
+            const args = arguments;
+            if (!cal.loaded) {
+                cal.ns = {};
+                cal.q = cal.q || [];
+                const script = documentRef.createElement('script');
+                script.src = A;
+                documentRef.head.appendChild(script);
+                cal.loaded = true;
+            }
+            if (args[0] === L) {
+                const api = function () {
+                    pushToQueue(api, arguments);
+                };
+                const namespace = args[1];
+                api.q = api.q || [];
+                if (typeof namespace === 'string') {
 
-        C.Cal =
-            C.Cal ||
-            function () {
-
-                const cal = C.Cal;
-                const args = arguments;
-
-                if (!cal.loaded) {
-                    cal.ns = {};
-                    cal.q = cal.q || [];
-
-                    const script =
-                        documentRef.createElement('script');
-
-                    script.src = A;
-
-                    documentRef.head.appendChild(script);
-
-                    cal.loaded = true;
+                    cal.ns[namespace] =
+                        cal.ns[namespace] || api;
+                    pushToQueue(cal.ns[namespace], args);
+                    pushToQueue(
+                        cal,
+                        ['initNamespace', namespace]
+                    );
+                } else {
+                    pushToQueue(cal, args);
                 }
-
-                if (args[0] === L) {
-
-                    const api = function () {
-                        pushToQueue(api, arguments);
-                    };
-
-                    const namespace = args[1];
-
-                    api.q = api.q || [];
-
-                    if (typeof namespace === 'string') {
-
-                        cal.ns[namespace] =
-                            cal.ns[namespace] || api;
-
-                        pushToQueue(
-                            cal.ns[namespace],
-                            args
-                        );
-
-                        pushToQueue(
-                            cal,
-                            ['initNamespace', namespace]
-                        );
-
-                    } else {
-                        pushToQueue(cal, args);
-                    }
-
-                    return;
-                }
-
-                pushToQueue(cal, args);
-            };
-
+                return;
+            }
+            pushToQueue(cal, args);
+        };
     })(
         window,
         'https://app.cal.eu/embed/embed.js',
         'init'
     );
-
-
-    // ============================================
-    // CONFIGURAZIONE CAL.COM
-    // ============================================
-
-    if (typeof Cal === 'function') {
-
-        Cal(
-            'init',
-            '30min',
-            {
-                origin: 'https://app.cal.eu'
-            }
-        );
-
-        Cal.config = Cal.config || {};
-
-        Cal.config.forwardQueryParams = true;
-
-        if (
-            Cal.ns &&
-            typeof Cal.ns['30min'] === 'function'
-        ) {
-            Cal.ns['30min'](
-                'ui',
-                {
-                    hideEventTypeDetails: false,
-                    layout: 'month_view'
-                }
-            );
-        }
-    }
-
+/* ============================================
+CONFIGURAZIONE CAL.COM
+============================================ */
+    Cal('init', '30min', {
+        origin: 'https://app.cal.com'
+    });
+    Cal.config = Cal.config || {};
+    Cal.config.forwardQueryParams = true;
+/* ============================================
+INTERFACCIA CALENDARIO
+============================================ */
+    Cal.ns['30min']('ui', {
+        hideEventTypeDetails: false,
+        layout: 'month_view'
+    });
 })();
